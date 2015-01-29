@@ -139,7 +139,7 @@ public class AvroScheme extends Scheme<JobConf, RecordReader, OutputCollector, O
      */
     @Override
     public void sink(
-            FlowProcess<JobConf> flowProcess,
+            FlowProcess<? extends JobConf> flowProcess,
             SinkCall<Object[], OutputCollector> sinkCall)
             throws IOException {
         TupleEntry tupleEntry = sinkCall.getOutgoingEntry();
@@ -164,7 +164,7 @@ public class AvroScheme extends Scheme<JobConf, RecordReader, OutputCollector, O
      */
     @Override
     public void sinkPrepare(
-            FlowProcess<JobConf> flowProcess,
+            FlowProcess<? extends JobConf> flowProcess,
             SinkCall<Object[], OutputCollector> sinkCall)
             throws IOException {
         sinkCall.setContext(new Object[]{schema});
@@ -184,7 +184,7 @@ public class AvroScheme extends Scheme<JobConf, RecordReader, OutputCollector, O
      */
     @Override
     public void sinkConfInit(
-            FlowProcess<JobConf> flowProcess,
+            FlowProcess<? extends JobConf> flowProcess,
             Tap<JobConf, RecordReader, OutputCollector> tap,
             JobConf conf) {
 
@@ -209,7 +209,7 @@ public class AvroScheme extends Scheme<JobConf, RecordReader, OutputCollector, O
      * @return Fields The source cascading fields.
      */
     @Override
-    public Fields retrieveSourceFields(FlowProcess<JobConf> flowProcess, Tap tap) {
+    public Fields retrieveSourceFields(FlowProcess<? extends JobConf> flowProcess, Tap tap) {
         if (schema == null) {
             try {
                 schema = getSourceSchema(flowProcess, tap);
@@ -238,7 +238,7 @@ public class AvroScheme extends Scheme<JobConf, RecordReader, OutputCollector, O
      */
     @Override
     public boolean source(
-            FlowProcess<JobConf> flowProcess,
+            FlowProcess<? extends JobConf> flowProcess,
             SourceCall<Object[], RecordReader> sourceCall)
             throws IOException {
 
@@ -270,7 +270,7 @@ public class AvroScheme extends Scheme<JobConf, RecordReader, OutputCollector, O
      */
     @Override
     public void sourceConfInit(
-            FlowProcess<JobConf> flowProcess,
+            FlowProcess<? extends JobConf> flowProcess,
             Tap<JobConf, RecordReader, OutputCollector> tap,
             JobConf conf) {
 
@@ -290,7 +290,7 @@ public class AvroScheme extends Scheme<JobConf, RecordReader, OutputCollector, O
      * @param tap         The cascading Tap object.
      * @return Schema The schema of the peeked at data, or Schema.NULL if none exists.
      */
-    private Schema getSourceSchema(FlowProcess<JobConf> flowProcess, Tap tap) throws IOException {
+    private Schema getSourceSchema(FlowProcess<? extends JobConf> flowProcess, Tap tap) throws IOException {
 
         if (tap instanceof CompositeTap) {
             tap = (Tap) ((CompositeTap) tap).getChildTaps().next();

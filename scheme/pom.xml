@@ -17,7 +17,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cascading.avro</groupId>
     <artifactId>avro-scheme</artifactId>
-    <version>2.2-SNAPSHOT</version>
+    <version>3.0.0-wip-61</version>
     <packaging>jar</packaging>
     <name>Cascading support for Avro</name>
     <description>
@@ -31,7 +31,7 @@
 
     <properties>
         <hadoop.version>1.0.3</hadoop.version>
-        <cascading.version>2.1.6</cascading.version>
+        <cascading.version>3.0.0-wip-61</cascading.version>
         <avro.version>1.7.4</avro.version>
     </properties>
 
@@ -60,6 +60,37 @@
                         <target>1.6</target>
                         <encoding>UTF-8</encoding>
                     </configuration>
+                </plugin>
+                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+                <plugin>
+                	<groupId>org.eclipse.m2e</groupId>
+                	<artifactId>lifecycle-mapping</artifactId>
+                	<version>1.0.0</version>
+                	<configuration>
+                		<lifecycleMappingMetadata>
+                			<pluginExecutions>
+                				<pluginExecution>
+                					<pluginExecutionFilter>
+                						<groupId>
+                							org.apache.avro
+                						</groupId>
+                						<artifactId>
+                							avro-maven-plugin
+                						</artifactId>
+                						<versionRange>
+                							[1.7.4,)
+                						</versionRange>
+                						<goals>
+                							<goal>schema</goal>
+                						</goals>
+                					</pluginExecutionFilter>
+                					<action>
+                						<ignore></ignore>
+                					</action>
+                				</pluginExecution>
+                			</pluginExecutions>
+                		</lifecycleMappingMetadata>
+                	</configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
