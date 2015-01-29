@@ -30,7 +30,7 @@
     </scm>
 
     <properties>
-        <hadoop.version>1.0.3</hadoop.version>
+        <hadoop.version>2.6.0</hadoop.version>
         <cascading.version>3.0.0-wip-61</cascading.version>
         <avro.version>1.7.4</avro.version>
     </properties>
@@ -143,7 +143,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-core</artifactId>
+            <artifactId>hadoop-client</artifactId>
             <version>${hadoop.version}</version>
             <scope>provided</scope>
         </dependency>
